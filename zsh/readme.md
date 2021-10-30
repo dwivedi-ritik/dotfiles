@@ -1,3 +1,3 @@
 <p>
-	<img src="images/term.png">
+	<img src="../images/term.png">
 </p>
