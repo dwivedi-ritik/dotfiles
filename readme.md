@@ -1,1 +1,3 @@
-![plot](https://github.com/dwivedi-ritik/dotfiles/tree/main/images/ss.jpg)
+<p>
+	<img src="images/home.png">
+</p>
