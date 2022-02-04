@@ -1,43 +1,34 @@
 #zsh config
-
-# custom prompt of luke smith
-autoload -U colors && colors	# Load colors
-
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+cowsay ahh shit! here we go again
 
 
-#ascii art on startup
+fpath+=$HOME/.zsh/pure
 
-ascii_art="
-⠀⠀⠀⠀⠀⣴⠉⡙⠳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠤⣚⡯⠴⢬⣱⡀⠀
-⠀⠀⠀⠀⢰⡇⣷⡌⢲⣄⡑⢢⡀⠀⠀⠀⠀⠀⢠⠾⢋⠔⣨⣴⣿⣷⡌⠇⡇⠀
-⠀⠀⠀⠀⢸⢹⣿⣿⣄⢻⣿⣷⣝⠷⢤⣤⣤⡶⢋⣴⣑⠟⠿⠿⠿⣿⣿⡀⡇⠀
-⠀⠀⠀⠀⢸⢸⣿⡄⢁⣸⣿⣋⣥⣶⣶⣶⣶⣶⣶⣿⣿⣶⣟⡁⠚⣿⣿⡇⡇⠀
-⢀⣠⡤⠤⠾⡘⠋⢀⣘⠋⠉⠉⠉⠉⢭⣭⣭⣭⣍⠉⢩⣭⠉⠉⠂⠙⠛⠃⣇⡀
-⠏⠀⠀⢿⣿⣷⡀⠀⢿⡄⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣆⠀⢿⣇⠀⠀⠀⠀⠀⠀⠈⢱
-⣦⠀⠀⠈⢿⣿⣧⠀⠘⣿⠀⠀⠀⡀⠀⠀⠘⣿⣿⣿⣿⡆⠀⢻⡆⠀⠀⠀⠀⠀⠀⢸
-⢻⡄⠀⠀⠘⠛⠉⠂⠀⠙⠁⠀⣼⣧⠀⠀⠀⠈⠀⠀⠈⠙⠀⠘⠓⠀⠀⠀⠀⠀⢀⡟
-⠀⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⣏⠀
-⠀⠀⠛⢶⢰⣶⢢⣤⣤⣄⠲⣶⠖⠀⣙⣀⠀⠀⠀⠤⢤⣀⣀⡀⣀⣠⣾⠟⡌⠀
-⠀⠀⠀⠘⢄⠃⣿⣿⣿⣿⠗⠀⠾⢿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⠸⠟⣡⣤⡳⢦
-⠀⠀⠀⠀⠀⢻⡆⣙⡿⢷⣾⣿⣶⣾⣿⣿⣿⣿⣿⣿⣿⡿⠟⢡⣴⣾⣿⣿⣿⣦
-⠀⠀⠀⠀⠀⡼⢁⡟⣫⣶⣍⡙⠛⠛⠛⠛⠛⣽⡖⣉⣠⣶⣶⣌⠛⢿⣿⣿⣿⣿
-⠀⠀⠀⢀⠔⢡⢎⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠹⣿⣿⣿
-⠀⢠⠖⢁⣴⡿⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢹⣿⣿"
+# .zshrc
+autoload -U promptinit; promptinit
 
-tput cup 1 1
+# optionally define some options
+PURE_CMD_MAX_EXEC_TIME=10
 
-echo "$ascii_art"
+# change the path color
+zstyle :prompt:pure:path color '#5af78e'
 
-c1="\033[7;30m   \033[0;1;30m"
-c2="\033[7;31m   \033[0;1;31m"
-c3="\033[7;32m   \033[0;1;32m"
-c4="\033[7;33m   \033[0;1;33m"
-c5="\033[7;34m   \033[0;1;34m"
-c6="\033[7;35m   \033[0;1;35m"
-c7="\033[7;36m   \033[0;1;36m"
-c8="\033[7;37m   \033[0;1;37m"
+# change the color for both `prompt:success` and `prompt:error`
+zstyle ':prompt:pure:prompt:*' color cyan
 
-tput cup 18 2
+# turn on git stash status
 
-printf " $c1$c2$c3$c4$c5$c6$c7$c8\n\n"
+prompt pure
+
+export PATH=$PATH:$HOME/bin
+
+#Aliases
+
+alias ls='ls --color=auto'
+
+#Get random gibbrish word
+
+get_random(){
+	random_commit=`shuf /usr/share/dict/cracklib-small | awk 'FNR == 1 { print $1 }'`
+}
+alias gpm='get_random; git add .; git commit -m ${random_commit}; git push origin main'
