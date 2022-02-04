@@ -32,3 +32,5 @@ get_random(){
 	random_commit=`shuf /usr/share/dict/cracklib-small | awk 'FNR == 1 { print $1 }'`
 }
 alias gpm='get_random; git add .; git commit -m ${random_commit}; git push origin main'
+
+#opopopop
