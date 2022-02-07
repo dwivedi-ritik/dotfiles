@@ -26,11 +26,11 @@ export PATH=$PATH:$HOME/bin
 
 alias ls='ls --color=auto'
 
+alias myip="ip addr show wlp1s0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/'"
+
 #Get random gibbrish word
 
 get_random(){
 	random_commit=`shuf /usr/share/dict/cracklib-small | awk 'FNR == 1 { print $1 }'`
 }
 alias gpm='get_random; git add .; git commit -m ${random_commit}; git push origin main'
-
-#opopopop
