@@ -25,8 +25,8 @@ export PATH=$PATH:$HOME/bin
 #Aliases
 
 alias ls='ls --color=auto'
-
-alias myip="ip addr show wlp1s0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/'"
+alias grep='grep --color=always'
+alias myip="ip addr show wlp1s0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' | sed 's/\// /g'"
 
 #Get random gibbrish word
 

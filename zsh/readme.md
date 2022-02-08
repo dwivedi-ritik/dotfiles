@@ -1,3 +1,1 @@
-<p>
-	<img src="../images/term.png">
-</p>
+`.zshrc` contains all the scripts and aliases.
