@@ -6,3 +6,4 @@ File with their applications
 | gitshort.sh | Short script to push your code to github|
 | pyactive.sh | Activate virtual argument |
 | bat.sh | shows you the current battery usage |
+| jrun | Script to run and build java files |

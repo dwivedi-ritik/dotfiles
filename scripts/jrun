@@ -1,0 +1,4 @@
+#! /bin/bash
+
+f=$(echo $1 | sed -E 's/\..+//')
+javac $1 && java $f
