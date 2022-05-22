@@ -21,9 +21,10 @@ zstyle ':prompt:pure:prompt:*' color cyan
 prompt pure
 
 export PATH=$PATH:$HOME/bin
-
-#Aliases
-
+export PATH=$PATH:$HOME/.cargo/bin
+#Alias
+alias t-stream='python /home/ritik/incomplete/torr-cli2/src/app.py' 
+alias rn='ranger'
 alias ls='ls --color=auto'
 alias grep='grep --color=always'
 alias myip="ip addr show wlp1s0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' | sed 's/\// /g'"
@@ -34,3 +35,4 @@ get_random(){
 	random_commit=`shuf /usr/share/dict/cracklib-small | awk 'FNR == 1 { print $1 }'`
 }
 alias gpm='get_random; git add .; git commit -m ${random_commit}; git push origin main'
+alias t-stream='python /home/ritik/incomplete/torr-cli2/src/app.py'
