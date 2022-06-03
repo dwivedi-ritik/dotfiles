@@ -7,3 +7,4 @@ File with their applications
 | pyactive.sh | Activate virtual argument |
 | bat.sh | shows you the current battery usage |
 | jrun | Script to run and build java files |
+| setbg | Set desktop background only for gnome|
