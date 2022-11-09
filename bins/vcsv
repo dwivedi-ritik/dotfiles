@@ -1,0 +1,101 @@
+#!/usr/bin/python
+import sys
+import csv
+from typing import Iterable , List , Any , Union , Set , Tuple
+
+from rich.console import Console
+from rich.table import Table
+from rich.prompt import Prompt
+from rich import print
+
+console = Console()
+
+IndexType = Union[str , int] 
+MatrixOutput = Union[str , int, float]
+
+class InvalidIndex(Exception):
+    def __init__(self):
+        message:str = "Row or Column is invalid"
+        super().__init__(message)
+
+class InvalidRowIndex(Exception):
+    def __init__(self):
+        message:str = "Row is invalid"
+        super().__init__(message)
+
+class CSV_Matrix(object):
+    
+    def __init__(self, iter_csv)-> None:
+        self.iter_csv:Iterable = iter_csv
+        self.col_string:Set = iter_csv[0]
+    
+    @staticmethod
+    def generate_matrix(iter_csv:Iterable) -> Iterable:
+        matrix:List[str] = []
+        for row in iter_csv:
+            matrix.append(row.split(','))
+        return matrix
+        
+    def parse_row(self , row: IndexType)-> int:
+        if row.isdigit():
+            return row
+        else:
+            raise InvalidRowIndex()
+    
+    def parse_col(self ,col: IndexType) -> int:
+        if col.isdigit():
+            return col
+        col = col.strip()
+        for i , el in enumerate(self.col_string):
+            if el.strip('"').strip("'") == col:
+                return i
+
+    def validate(self , row:IndexType , col:IndexType) -> Tuple:
+        try:
+            row , col = int(row) , int(col)
+            return (row , col)
+        except Exception as e:
+            raise InvalidIndex()
+
+    def fetch_value(self, row:IndexType , col:IndexType) -> Any:
+        row , col = self.validate(row , col)
+        return self.iter_csv[row][col]
+        
+
+    def get_value(self , row: IndexType ,  col: IndexType) -> Any:
+        row = self.parse_row(row) 
+        col = self.parse_col(col)
+        return self.fetch_value(row , col)
+
+def get_header(csv_iterable:Iterable)->List[str]:
+    return next(csv_iterable)
+
+if len(sys.argv) <= 1:
+    console.print("Pass filename" , style='bold green')
+    exit(1)
+
+filename:str = "".join(sys.argv[1:])
+
+with open(filename , "r+") as f:
+    string:List[str] = f.read().splitlines()
+    matrix_csv:Iterable = CSV_Matrix.generate_matrix(string)
+
+iter_object = csv.reader(string)
+
+table = Table(show_header=True, header_style="bold magenta" )
+
+for head in get_header(iter_object):
+    table.add_column(head , justify="start")
+
+for content in iter_object:
+    table.add_row(*content)
+
+console.print(table)
+
+prompt_string:str = Prompt.ask(':rocket: Row and Col')
+row, col = prompt_string.split(',')
+
+csv_matrix:CSV_Matrix = CSV_Matrix(matrix_csv)
+output:MatrixOutput = csv_matrix.get_value(row , col)
+
+print(output)   

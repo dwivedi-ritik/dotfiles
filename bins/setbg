@@ -1,0 +1,8 @@
+#! /bin/zsh
+
+# A command line script to set a random wallpaper
+# I am using using gnome DE so this script only works in gnome DE
+
+filename=`(ls ~/Pictures/wallpapers | shuf -n 1)`
+
+gsettings set org.gnome.desktop.background picture-uri ~/Pictures/wallpapers/$filename

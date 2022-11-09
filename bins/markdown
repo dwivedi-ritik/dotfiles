@@ -1,0 +1,14 @@
+#! /usr/bin/python
+import sys
+from rich.markdown import Markdown
+from rich.console import Console
+console = Console()
+
+if len(sys.argv) <= 1:
+    console.print(":confused:"+" Bro where is the file ?")
+    exit(1)
+
+filename = sys.argv[1]
+with open(filename , "r") as f:
+    markdown = Markdown(markup = f.read() , code_theme='monokai')
+console.print(markdown)

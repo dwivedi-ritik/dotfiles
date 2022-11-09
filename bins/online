@@ -1,0 +1,9 @@
+#! /bin/zsh
+
+bssid=`nmcli device wifi list | fzf | cut -b 9- | awk '{print$1}'`
+
+echo "Pass: "
+
+read -s pass
+
+nmcli device wifi connect $bssid password $pass
