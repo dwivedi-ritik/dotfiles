@@ -1,0 +1,34 @@
+colors:
+  primary:
+    background: "#2a2f38"
+    foreground: "#e1e3e4"
+
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+
+  selection:
+    text: CellBackground
+    background: CellForeground
+
+  normal:
+    black: "#181a1c"
+    red: "#ff6578"
+    green: "#9dd274"
+    yellow: "#eacb64"
+    blue: "#72cce8"
+    magenta: "#ba9cf3"
+    cyan: "#f69c5e"
+    white: "#e1e3e4"
+font:
+  normal:
+    family: Andale Mono 
+  size: 14
+window:
+  padding:
+    x: 10
+    y: 10
